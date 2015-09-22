@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+echo "Copying module..."
+cp /app/raspicommrs485.ko /lib/modules/$(uname -r)/
+echo "Installing module..."
+depmod /lib/modules/$(uname -r)/raspicommrs485.ko
+modprobe raspicommrs485
+echo "Module running on kernel"
+lsmod
+while true; do
+	echo "Still here..."
+	sleep 10
+done
